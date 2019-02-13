@@ -1,0 +1,187 @@
+table[class^="azo_ssb"] {
+  border: none;
+  empty-cells: hide;
+}
+table[class^="azo_ssb"] td {
+  vertical-align: middle;
+  cursor: pointer;
+}
+table[class^="azo_ssb"] td img {
+  vertical-align: middle;
+}
+[class^="azo_ssb_btn_twitter-"] {
+  background-color: #55ACEE;
+}
+[class^="azo_ssb_btn_facebook-"] {
+  background-color: #3B5998;
+}
+[class^="azo_ssb_btn_hatena-"] {
+  background-color: #00A6DB;
+}
+[class^="azo_ssb_btn_tumblr-"] {
+  background-color: #35465C;
+}
+[class^="azo_ssb_btn_pocket-"] {
+  background-color: #EE4056;
+}
+[class^="azo_ssb_btn_line-"] {
+  background-color: #00C300;
+}
+[class^="azo_ssb_btn_mixi-"] {
+  background-color: #D1AD5A;
+}
+[class^="azo_ssb_btn_gbookmark-"] {
+  background-color: #4285F4;
+}
+[class^="azo_ssb_btn_evernote-"] {
+  background-color: #00A82D;
+}
+[class^="azo_ssb_btn_hangout-"] {
+  background-color: #29A163;
+}
+[class^="azo_ssb_btn_whatsapp-"] {
+  background-color: #29E77D;
+}
+[class^="azo_ssb_btn_weibo-"] {
+  background-color: #E7112E;
+}
+[class^="azo_ssb_btn_facebook_msg-"] {
+  background-color: #0084FF;
+}
+[class^="azo_ssb_btn_pinterest-"] {
+  background-color: #BD081C;
+}
+[class^="azo_ssb_btn_linkedin-"] {
+  background-color: #007BB5;
+}
+[class^="azo_ssb_btn_reddit-"] {
+  background-color: #FF4500;
+}
+[class^="azo_ssb_btn_telegram-"] {
+  background-color: #329DDE;
+}
+[class^="azo_ssb_btn_renren-"] {
+  background-color: #005EAC;
+}
+[class^="azo_ssb_btn_buffer-"] {
+  background-color: #2A2A2A;
+}
+[class^="azo_ssb_btn_blogger-"] {
+  background-color: #FDA352;
+}
+[class^="azo_ssb_btn_digg-"] {
+  background-color: #2A2A2A;
+}
+[class^="azo_ssb_btn_flipboard-"] {
+  background-color: #CC0000;
+}
+[class^="azo_ssb_btn_instapaper-"] {
+  background-color: #2A2A2A;
+}
+[class^="azo_ssb_btn_qq-"] {
+  background-color: #2A2122;
+}
+[class^="azo_ssb_btn_kakao-"] {
+  background-color: #FCB700;
+}
+[class^="azo_ssb_btn_onenote-"] {
+  background-color: #7609A5;
+}
+[class^="azo_ssb_btn_known-"] {
+  background-color: #2A2A2A;
+}
+[class^="azo_ssb_btn_myspace-"] {
+  background-color: #2A2A2A;
+}
+[class^="azo_ssb_btn_odnoklassniki-"] {
+  background-color: #F2720C;
+}
+[class^="azo_ssb_btn_vkontakte"] {
+  background-color: #587EA3;
+}
+[class^="azo_ssb_btn_xing-"] {
+  background-color: #165B66;
+}
+[class^="azo_ssb_btn_yummly-"] {
+  background-color: #E16120;
+}
+[class^="azo_ssb_btn_qzone-"] {
+  background-color: #F9C03F;
+}
+[class^="azo_ssb_btn_skype-"] {
+  background-color: #00AFF0;
+}
+[class^="azo_ssb_btn_viber"] {
+  background-color: #7C529E;
+}
+[class^="azo_ssb_btn_printfriendly-"] {
+  background-color: #6D9F00;
+}
+[class^="azo_ssb_btn_amazon_wl-"] {
+  background-color: #FF9900;
+}
+[class^="azo_ssb_btn_gmail-"] {
+  background-color: #DD5347;
+}
+[class^="azo_ssb_btn_rss-"] {
+  background-color: #F07700;
+}
+[class^="azo_ssb_btn_feedly-"] {
+  background-color: #2BB24C;
+}
+[class^="azo_ssb_btn_inoreader-"] {
+  background-color: #00A2D7;
+}
+[class^="azo_ssb_btn_sms-"] {
+  background-color: #00CCCC;
+}
+[class^="azo_ssb_btn_email-"] {
+  background-color: #0000CC;
+}
+[class^="azo_ssb_btn_linkcopy-"] {
+  background-color: #888888;
+}
+[class^="azo_ssb_btn_bookmark-"] {
+  background-color: #888888;
+}
+[class^="azo_ssb_btn_print-"] {
+  background-color: #888888;
+}
+[class^="azo_ssb_btn_other-"] {
+  background-color: #0166ff;
+}
+[class^="azo_ssb_modal_"] {
+	display: none;
+}
+[class^="azo_ssb_overlay_back_"] {
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 5;
+}
+[class^="azo_ssb_overlay_table_"] {
+  border-radius: 10px;
+  top: 10%;
+  left: 30%;
+  width: 40%;
+  height: 80%;
+  background: #FFFFFF;
+  position: fixed;
+  z-index: 10;
+  border-collapse: separate;
+  border-spacing: 5px 5px;
+}
+[class^="azo_ssb_icon_overlay_part_"] {
+  width: 2em;
+}
+[class^="azo_ssb_overlay_table_"] td {
+  color: #FFFFFF;
+  text-align: center;
+  border-radius: 10px;
+  width: 13em;
+}
+

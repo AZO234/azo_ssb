@@ -1,0 +1,13 @@
+table.azo_ssb_template1 {
+  border-collapse: separate;
+  border-spacing: 1em 1em;
+}
+table.azo_ssb_template1 td {
+  color: #FFFFFF;
+  text-align: center;
+  border-radius: 10%;
+}
+.azo_ssb_icon_template1 {
+  width: 2em;
+}
+
