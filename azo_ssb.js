@@ -125,7 +125,6 @@ function azo_ssb_top() {
   // Facebook
   var facebook_script = '<script>\
   window.fbAsyncInit = function() {\
-  alert("hihi");\
     FB.init({\
       appId            : \'' + azo_ssb_static.facebook_appid + '\',\
       autoLogAppEvents : true,\
@@ -1082,7 +1081,10 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
       this.add_btn3(setting, tr, 'azo_ssb_btn_weibo-', azo_ssb_home + 'icons_addtoany/sina_weibo.svg', this.weibo_name, this.weibo_share, this.weibo_link, function(event) { window.open(event.target.link, '_blank'); });
       break;
     case AZO_SSB_BTN_FBMESSAGE:
-      this.add_btn3(setting, tr, 'azo_ssb_btn_facebook_msg-', azo_ssb_home + 'icons_addtoany/facebook_messenger.svg', this.facebook_msg_name, this.facebook_msg_send, this.facebook_msg_link, function(event) { FB.ui({ method: 'send', link: event.target.azo_ssb.URL}); });
+      this.add_btn3(setting, tr, 'azo_ssb_btn_facebook_msg-', azo_ssb_home + 'icons_addtoany/facebook_messenger.svg', this.facebook_msg_name, this.facebook_msg_send, this.facebook_msg_link, function(event) { 
+      //FB.ui({ method: 'send', link: event.target.azo_ssb.URL});
+      window.open(event.target.link, '_blank');
+      });
       break;
     case AZO_SSB_BTN_PINTEREST:
       this.add_btn3(setting, tr, 'azo_ssb_btn_pinterest-', azo_ssb_home + 'icons_addtoany/pinterest.svg', this.pinterest_name, this.pinterest_pinit, this.pinterest_link, function(event) { window.open(event.target.link, '_blank'); });
