@@ -55,8 +55,63 @@ const AZO_SSB_BTN_BOOKMARK = 133;
 const AZO_SSB_BTN_PRINT = 134;
 const AZO_SSB_BTN_OTHER = 150;
 
+var azo_ssb_static = {};
+
 // azo_ssb home directory (must http:// or https:// first / must slash(/) end / empty to debug)
-var azo_ssb_home = '';
+var azo_ssb_home = 'http://domisan.sakura.ne.jp/azo_ssb/';
+
+function azo_ssb_preinit() {
+  azo_ssb_static.locale = navigator.language || navigator.userLanguage;
+  azo_ssb_static.lang = azo_ssb_static.locale.split('-')[0];
+
+  var metas = document.getElementsByTagName('meta');
+
+  azo_ssb_static.hashtag = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'article:tag') {
+      if(azo_ssb_static.hashtag == '') {
+        azo_ssb_static.hashtag = meta.getAttribute('content');
+      }
+    }
+  }
+
+  azo_ssb_static.description = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'og:description') {
+      if(azo_ssb_static.description == '') {
+        azo_ssb_static.description = meta.getAttribute('content');
+      }
+    }
+  }
+
+  azo_ssb_static.image = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'og:image') {
+      if(azo_ssb_static.image == '') {
+        azo_ssb_static.image = meta.getAttribute('content');
+      }
+    }
+  }
+
+  azo_ssb_static.facebook_appid = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'fb:app_id') {
+      if(azo_ssb_static.facebook_appid == '') {
+        azo_ssb_static.facebook_appid = meta.getAttribute('content');
+      }
+    }
+  }
+
+  // Facebook appid (if <meta property="fb:app_id" content="(appid)"> set, blank OK / to get appid at https://developers.facebook.com/ and set correct domain)
+  var facebook_appid = '';
+  if(facebook_appid != '') {
+    azo_ssb_static.facebook_appid = facebook_appid;
+  }
+}
 
 function azo_ssb_head() {
   // css
@@ -67,18 +122,31 @@ function azo_ssb_head() {
 }
 
 function azo_ssb_top() {
-  // Hangout
-  /*
-  var init_hangout = '<script src="https://apis.google.com/js/platform.js" async defer></script>';
-  var div_hangout = document.createElement('div');
-  div_hangout.innerHTML = init_hangout;
-  var body = document.getElementsByTagName('body');
-  if(body[0].children) {
-    body[0].insertBefore(div_hangout.children[0], body[0].children[0]);
+  // Facebook
+  var facebook_script = '<script>\
+  window.fbAsyncInit = function() {\
+  alert("hihi");\
+    FB.init({\
+      appId            : \'' + azo_ssb_static.facebook_appid + '\',\
+      autoLogAppEvents : true,\
+      xfbml            : true,\
+      version          : \'v3.2\'\
+    });\
+  };\
+</script>';
+  var div_facebook_script = document.createElement('div');
+  div_facebook_script.innerHTML = facebook_script;
+  var script_facebook_script2 = document.createElement('script');
+  script_facebook_script2.id = 'facebook-jssdk';
+  script_facebook_script2.src = 'https://connect.facebook.net/' + azo_ssb_static.locale + '/sdk.js';
+  var body = document.getElementsByTagName('body')[0];
+  if(body.children) {
+    body.insertBefore(div_facebook_script.children[0], body.children[0]);
+    body.insertBefore(script_facebook_script2, body.children[0].nextSibling);
   } else {
-    body[0].appendChild(div_hangout.children[0]);
+    body.appendChild(div_facebook_script.children[0]);
+    body.appendChild(script_facebook_script2);
   }
-  */
 }
 
 function azo_ssb_bottom() {
@@ -111,8 +179,8 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
   }
   this.modaldiv.azo_ssb = this;
 
-  this.locale = navigator.language || navigator.userLanguage;
-  this.lang = this.locale.split('-')[0];
+  this.locale = azo_ssb_static.locale;
+  this.lang = azo_ssb_static.lang;
 
   this.init = function() {
     /* === user setting start === */
@@ -120,7 +188,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     // --- azo_ssb Common
 
     // hashtag (omit hash)
-    this.hashtag = '';
+    this.hashtag = 'AZO234';
     // description (if <meta property="og:description" content="(description)"> set, blank OK)
     this.description = '';
     // image (must http:// or https:// first / if <meta property="og:image" content="(image URL)"> set, blank OK)
@@ -133,7 +201,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     // Twitter hashtags (omit hash / prior to common)
     this.twitter_hashtag = '';
     // Twitter account (for follow / omit atmark)
-    this.twitter_account = '';
+    this.twitter_account = 'AZO234';
 
     // name
     this.twitter_name = 'Twitter';
@@ -146,8 +214,6 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
 
     // --- Facebook share
 
-    // Facebook appid (if <meta property="fb:app_id" content="(appid)"> set, blank OK / to get appid at https://developers.facebook.com/ and set correct domain)
-    this.facebook_appid = '';
     // Facebook hashtags (omit hash / prior to common)
     this.facebook_hashtag = '';
 
@@ -702,17 +768,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.enURL = encodeURI(this.URL);
     this.entitle = encodeURI(this.title);
 
-    var metas = document.getElementsByTagName('meta');
-
-    var hashtag = '';
-    for(var i = 0; i < metas.length; i++) {
-      var meta = metas[i];
-      if(meta.getAttribute('property') == 'article:tag') {
-        if(hashtag == '') {
-          hashtag = meta.getAttribute('content');
-        }
-      }
-    }
+    var hashtag = azo_ssb_static.hashtag;
     if(links) {
       hashtag = links.hashtag;
     }
@@ -724,15 +780,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     }
     hashtag = encodeURI(hashtag);
 
-    var description = '';
-    for(var i = 0; i < metas.length; i++) {
-      var meta = metas[i];
-      if(meta.getAttribute('property') == 'og:description') {
-        if(description == '') {
-          description = meta.getAttribute('content');
-        }
-      }
-    }
+    var description = azo_ssb_static.description;
     if(links) {
       description = links.description;
     }
@@ -745,15 +793,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.description = description;
     this.endescription = encodeURI(description);
 
-    var image = '';
-    for(var i = 0; i < metas.length; i++) {
-      var meta = metas[i];
-      if(meta.getAttribute('property') == 'og:image') {
-        if(image == '') {
-          image = meta.getAttribute('content');
-        }
-      }
-    }
+    var image = azo_ssb_static.image;
     if(links) {
       image = links.image;
     }
@@ -787,21 +827,6 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.rss = rss;
     this.enrss = encodeURI(rss);
 
-    var appid = '';
-    for(var i = 0; i < metas.length; i++) {
-      var meta = metas[i];
-      if(meta.getAttribute('property') == 'fb:app_id') {
-        appid = meta.getAttribute('content');
-      }
-    }
-    if(!appid) {
-      appid = '';
-    }
-    if(this.facebook_appid != '') {
-      appid = this.facebook_appid;
-    }
-    this.facebook_appid = encodeURI(appid);
-
     var facebook_hashtag = '%23' + hashtag;
     if(this.facebook_hashtag != '') {
       facebook_hashtag = '%23' + encodeURI(this.facebook_hashtag);
@@ -822,7 +847,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     } else {
       this.twitter_link = 'https://twitter.com/intent/tweet?text=' + this.entitle + '&url=' + this.enURL + '&hashtags=' + this.twitter_hashtag + '&via=' + this.twitter_account + '&related="' + this.twitter_account;
     }
-    this.facebook_link = 'https://www.facebook.com/dialog/share?app_id=' + this.facebook_appid + '&hashtag=' + this.facebook_hashtag + '&href=' + this.enURL;
+    this.facebook_link = 'https://www.facebook.com/dialog/share?app_id=' + azo_ssb_static.facebook_appid + '&hashtag=' + this.facebook_hashtag + '&href=' + this.enURL;
     this.hatena_link = 'https://b.hatena.ne.jp/bookmarklet?url=' + this.enURL + '&btitle=' + this.entitle;
     this.tumblr_link = 'https://www.tumblr.com/widgets/share/tool?posttype=link&canonicalUrl=' + this.enURL + '&title=' + this.entitle + '&caption=' + this.endescription;
     this.pocket_link = 'https://getpocket.com/save?url=' + this.enURL + '&title=' + this.entitle;
@@ -832,7 +857,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.evernote_link = 'https://www.evernote.com/clip.action?url=' + this.URL + '&title=' + this.entitle;
     this.whatsapp_link = 'https://api.whatsapp.com/send?text=' + this.entitle + '%0A' + this.enURL;
     this.weibo_link = 'https://service.weibo.com/share/share.php?url=' + this.enURL + '&title=' + this.entitle;
-    this.facebook_msg_link = 'https://www.facebook.com/dialog/send?app_id=' + this.facebook_appid + '&link=' + this.enURL;
+    this.facebook_msg_link = 'https://www.facebook.com/dialog/send?app_id=' + azo_ssb_static.facebook_appid + '&link=' + this.enURL;
     this.pinterest_link = 'http://pinterest.com/pin/create/button/?url=' + this.enURL + '&media=' + this.pinterest_media + '&description=' + this.entitle;
     this.linkedin_link = 'https://www.linkedin.com/shareArticle?mini=true&title=' + this.entitle + '&url=' + this.enURL;
     this.reddit_link = 'https://www.reddit.com/submit?url=' + this.enURL + '&title=' + this.entitle;
@@ -1057,7 +1082,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
       this.add_btn3(setting, tr, 'azo_ssb_btn_weibo-', azo_ssb_home + 'icons_addtoany/sina_weibo.svg', this.weibo_name, this.weibo_share, this.weibo_link, function(event) { window.open(event.target.link, '_blank'); });
       break;
     case AZO_SSB_BTN_FBMESSAGE:
-      this.add_btn3(setting, tr, 'azo_ssb_btn_facebook_msg-', azo_ssb_home + 'icons_addtoany/facebook_messenger.svg', this.facebook_msg_name, this.facebook_msg_send, this.facebook_msg_link, function(event) { window.open(event.target.link, '_blank'); });
+      this.add_btn3(setting, tr, 'azo_ssb_btn_facebook_msg-', azo_ssb_home + 'icons_addtoany/facebook_messenger.svg', this.facebook_msg_name, this.facebook_msg_send, this.facebook_msg_link, function(event) { FB.ui({ method: 'send', link: event.target.azo_ssb.URL}); });
       break;
     case AZO_SSB_BTN_PINTEREST:
       this.add_btn3(setting, tr, 'azo_ssb_btn_pinterest-', azo_ssb_home + 'icons_addtoany/pinterest.svg', this.pinterest_name, this.pinterest_pinit, this.pinterest_link, function(event) { window.open(event.target.link, '_blank'); });
@@ -1222,6 +1247,8 @@ function azo_ssb_array_add(azo_ssb_setting) {
 
 document.addEventListener('DOMContentLoaded', function(event) {
   if(azo_ssb_array.length > 0) {
+    azo_ssb_preinit();
+
     azo_ssb_head();
     azo_ssb_top();
     azo_ssb_bottom();
