@@ -58,7 +58,7 @@ const AZO_SSB_BTN_OTHER = 150;
 var azo_ssb_static = {};
 
 // azo_ssb home directory (must http:// or https:// first / must slash(/) end / empty to debug)
-var azo_ssb_home = 'http://domisan.sakura.ne.jp/azo_ssb/';
+var azo_ssb_home = '';
 
 function azo_ssb_preinit() {
   azo_ssb_static.locale = navigator.language || navigator.userLanguage;
