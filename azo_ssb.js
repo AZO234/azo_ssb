@@ -3,6 +3,7 @@ const AZO_SSB_BTNT_NOTHING = 0;
 const AZO_SSB_BTNT_ICON = 1;
 const AZO_SSB_BTNT_LABEL = 2;
 const AZO_SSB_BTNT_ICON_LABEL = 3;
+const AZO_SSB_BTNT_ICON_LABEL_NL = 4;
 
 // button
 const AZO_SSB_BTN_SPC = 0;
@@ -54,8 +55,63 @@ const AZO_SSB_BTN_BOOKMARK = 133;
 const AZO_SSB_BTN_PRINT = 134;
 const AZO_SSB_BTN_OTHER = 150;
 
+var azo_ssb_static = {};
+
 // azo_ssb home directory (must http:// or https:// first / must slash(/) end / empty to debug)
-var azo_ssb_home = '//kkakaku.jp/azo_ssb/';
+var azo_ssb_home = 'http://domisan.sakura.ne.jp/azo_ssb/';
+
+function azo_ssb_preinit() {
+  azo_ssb_static.locale = navigator.language || navigator.userLanguage;
+  azo_ssb_static.lang = azo_ssb_static.locale.split('-')[0];
+
+  var metas = document.getElementsByTagName('meta');
+
+  azo_ssb_static.hashtag = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'article:tag') {
+      if(azo_ssb_static.hashtag == '') {
+        azo_ssb_static.hashtag = meta.getAttribute('content');
+      }
+    }
+  }
+
+  azo_ssb_static.description = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'og:description') {
+      if(azo_ssb_static.description == '') {
+        azo_ssb_static.description = meta.getAttribute('content');
+      }
+    }
+  }
+
+  azo_ssb_static.image = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'og:image') {
+      if(azo_ssb_static.image == '') {
+        azo_ssb_static.image = meta.getAttribute('content');
+      }
+    }
+  }
+
+  azo_ssb_static.facebook_appid = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'fb:app_id') {
+      if(azo_ssb_static.facebook_appid == '') {
+        azo_ssb_static.facebook_appid = meta.getAttribute('content');
+      }
+    }
+  }
+
+  // Facebook appid (if <meta property="fb:app_id" content="(appid)"> set, blank OK / to get appid at https://developers.facebook.com/ and set correct domain)
+  var facebook_appid = '';
+  if(facebook_appid != '') {
+    azo_ssb_static.facebook_appid = facebook_appid;
+  }
+}
 
 function azo_ssb_head() {
   // css
@@ -66,18 +122,25 @@ function azo_ssb_head() {
 }
 
 function azo_ssb_top() {
-  // Hangout
-  /*
-  var init_hangout = '<script src="https://apis.google.com/js/platform.js" async defer></script>';
-  var div_hangout = document.createElement('div');
-  div_hangout.innerHTML = init_hangout;
-  var body = document.getElementsByTagName('body');
-  if(body[0].children) {
-    body[0].insertBefore(div_hangout.children[0], body[0].children[0]);
+  // Facebook
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : azo_ssb_static.facebook_appid,
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v3.2'
+    });
+  };
+  var script_facebook_script = document.createElement('script');
+  script_facebook_script.id = 'facebook-jssdk';
+  script_facebook_script.src = 'https://connect.facebook.net/' + azo_ssb_static.locale + '/sdk.js';
+  var div = document.createElement('div');
+  var body = document.getElementsByTagName('body')[0];
+  if(body.children) {
+    body.insertBefore(script_facebook_script, body.children[0]);
   } else {
-    body[0].appendChild(div_hangout.children[0]);
+    body.appendChild(script_facebook_script);
   }
-  */
 }
 
 function azo_ssb_bottom() {
@@ -110,8 +173,8 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
   }
   this.modaldiv.azo_ssb = this;
 
-  this.locale = navigator.language || navigator.userLanguage;
-  this.lang = this.locale.split('-')[0];
+  this.locale = azo_ssb_static.locale;
+  this.lang = azo_ssb_static.lang;
 
   this.init = function() {
     /* === user setting start === */
@@ -138,16 +201,13 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.twitter_name = 'Twitter';
 
     // tweet
+    this.twitter_tweet = 'tweet';
     if(this.lang == 'ja') {
       this.twitter_tweet = 'ツイート';
-    } else {
-      this.twitter_tweet = 'tweet';
     }
 
     // --- Facebook share
 
-    // Facebook appid (if <meta property="fb:app_id" content="(appid)"> set, blank OK / to get appid at https://developers.facebook.com/ and set correct domain)
-    this.facebook_appid = '';
     // Facebook hashtags (omit hash / prior to common)
     this.facebook_hashtag = '';
 
@@ -155,10 +215,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.facebook_name = 'Facebook';
 
     // share
+    this.facebook_share = 'share';
     if(this.lang == 'ja') {
       this.facebook_share = 'シェア';
-    } else {
-      this.facebook_share = 'share';
     }
 
     // --- Hatena
@@ -171,10 +230,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     }
 
     // bookmark
+    this.hatena_bookmark = 'bookmark';
     if(this.lang == 'ja') {
       this.hatena_bookmark = 'ブックマーク';
-    } else {
-      this.hatena_bookmark = 'bookmark';
     }
 
     // --- Tumbler
@@ -183,10 +241,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.tumblr_name = 'Tumblr';
 
     // share
+    this.tumblr_share = 'share';
     if(this.lang == 'ja') {
       this.tumblr_share = 'シェア';
-    } else {
-      this.tumblr_share = 'share';
     }
 
     // --- Pocket
@@ -195,10 +252,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.pocket_name = 'Pocket';
 
     // pocket
+    this.pocket_pocket = 'share';
     if(this.lang == 'ja') {
       this.pocket_pocket = 'ポケット';
-    } else {
-      this.pocket_pocket = 'share';
     }
 
     // --- LINE
@@ -207,10 +263,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.line_name = 'LINE';
 
     // send
+    this.line_send = 'send';
     if(this.lang == 'ja') {
       this.line_send = '送る';
-    } else {
-      this.line_send = 'send';
     }
 
     // --- mixi
@@ -222,10 +277,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
 //  this.mixi_key = '';
 
     // check
+    this.mixi_check = 'check';
     if(this.lang == 'ja') {
       this.mixi_check = 'チェック';
-    } else {
-      this.mixi_check = 'check';
     }
 
     // --- Google bookmarks
@@ -234,10 +288,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.gbookmark_name = 'Google bookmarks';
 
     // bookmark
+    this.gbookmark_bookmark = 'bookmark';
     if(this.lang == 'ja') {
       this.gbookmark_bookmark = 'ブックマーク';
-    } else {
-      this.gbookmark_bookmark = 'bookmark';
     }
 
     // --- Evernote
@@ -246,10 +299,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.evernote_name = 'Evernote';
 
     // clip
+    this.evernote_clip = 'clip';
     if(this.lang == 'ja') {
       this.evernote_clip = 'クリップ';
-    } else {
-      this.evernote_clip = 'clip';
     }
 
     // --- Google Hangouts
@@ -258,10 +310,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.hangout_name = 'Google Hangouts';
 
     // send
+    this.hangout_send = 'send';
     if(this.lang == 'ja') {
       this.hangout_send = '送る';
-    } else {
-      this.hangout_send = 'send';
     }
 
     // --- WhatsApp
@@ -270,10 +321,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.whatsapp_name = 'WhatsApp';
 
     // send
+    this.whatsapp_send = 'send';
     if(this.lang == 'ja') {
       this.whatsapp_send = '送る';
-    } else {
-      this.whatsapp_send = 'send';
     }
 
     // --- Weibo
@@ -281,14 +331,10 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     // name
     this.weibo_name = 'Weibo';
 
-    // to get appid, read http://www.cs.cmu.edu/~lingwang/weiboguide/
-    this.weibo_appid = '';
-
     // share
+    this.weibo_share = 'share';
     if(this.lang == 'ja') {
       this.weibo_share = '共有';
-    } else {
-      this.weibo_share = 'share';
     }
 
     // --- Facebook message
@@ -300,25 +346,23 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.facebook_msg_name = 'Facebook message';
 
     // share
+    this.facebook_msg_send = 'send';
     if(this.lang == 'ja') {
       this.facebook_msg_send = '送る';
-    } else {
-      this.facebook_msg_send = 'send';
     }
 
     // --- Pinterest
 
     // media URL
-    this.pinterest_media_url = 'mypage.png';
+    this.pinterest_media_url = '';
 
     // name
     this.pinterest_name = 'Pinterest';
 
     // pin it
+    this.pinterest_pinit = 'Pin-it';
     if(this.lang == 'ja') {
       this.pinterest_pinit = '保存';
-    } else {
-      this.pinterest_pinit = 'Pin-it';
     }
 
     // --- Linkedin
@@ -327,10 +371,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.linkedin_name = 'Linkedin';
 
     // share
+    this.linkedin_share = 'share';
     if(this.lang == 'ja') {
       this.linkedin_share = '共有';
-    } else {
-      this.linkedin_share = 'share';
     }
 
     // --- Reddit
@@ -339,10 +382,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.reddit_name = 'Reddit';
 
     // post
+    this.reddit_post = 'post';
     if(this.lang == 'ja') {
       this.reddit_post = '投稿';
-    } else {
-      this.reddit_post = 'post';
     }
 
     // --- Telegram
@@ -351,10 +393,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.telegram_name = 'Telegram';
 
     // share
+    this.telegram_share = 'share';
     if(this.lang == 'ja') {
       this.telegram_share = '共有';
-    } else {
-      this.telegram_share = 'share';
     }
 
     // --- Renren
@@ -363,10 +404,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.renren_name = 'Renren';
 
     // share
+    this.renren_share = 'share';
     if(this.lang == 'ja') {
       this.renren_share = '共有';
-    } else {
-      this.renren_share = 'share';
     }
 
     // --- Buffer
@@ -375,10 +415,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.buffer_name = 'Buffer';
 
     // read later
+    this.buffer_readlater = 'read later';
     if(this.lang == 'ja') {
       this.buffer_readlater = '後で読む';
-    } else {
-      this.buffer_readlater = 'read later';
     }
 
     // --- Blogger
@@ -387,10 +426,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.blogger_name = 'Blogger';
 
     // blog this
+    this.blogger_blogthis = 'blog this';
     if(this.lang == 'ja') {
       this.blogger_blogthis = '記事を作成';
-    } else {
-      this.blogger_blogthis = 'blog this';
     }
 
     // --- Digg
@@ -399,10 +437,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.digg_name = 'Digg';
 
     // submit
+    this.digg_submit = 'submit';
     if(this.lang == 'ja') {
       this.digg_submit = '送信';
-    } else {
-      this.digg_submit = 'submit';
     }
 
     // --- Flipboard
@@ -411,10 +448,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.flipboard_name = 'Flipboard';
 
     // share
+    this.flipboard_share = 'share';
     if(this.lang == 'ja') {
       this.flipboard_share = '共有';
-    } else {
-      this.flipboard_share = 'share';
     }
 
     // --- Instapaper
@@ -423,10 +459,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.instapaper_name = 'Instapaper';
 
     // add
+    this.instapaper_add = 'add';
     if(this.lang == 'ja') {
       this.instapaper_add = '追加';
-    } else {
-      this.instapaper_add = 'add';
     }
 
     // --- QQ
@@ -435,10 +470,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.qq_name = 'QQ';
 
     // share
+    this.qq_share = 'share';
     if(this.lang == 'ja') {
       this.qq_share = '共有';
-    } else {
-      this.qq_share = 'share';
     }
 
     // --- Kakao
@@ -447,10 +481,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.kakao_name = 'Kakao';
 
     // share
+    this.kakao_share = 'share';
     if(this.lang == 'ja') {
       this.kakao_share = '共有';
-    } else {
-      this.kakao_share = 'share';
     }
 
     // --- OneNote
@@ -459,10 +492,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.onenote_name = 'OneNote';
 
     // save
+    this.onenote_save = 'save';
     if(this.lang == 'ja') {
       this.onenote_save = '保存';
-    } else {
-      this.onenote_save = 'save';
     }
 
     // --- Known
@@ -471,10 +503,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.known_name = 'Known';
 
     // share
+    this.known_share = 'share';
     if(this.lang == 'ja') {
       this.known_share = '共有';
-    } else {
-      this.known_share = 'share';
     }
 
     // --- Myspace
@@ -483,10 +514,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.myspace_name = 'Myspace';
 
     // post
+    this.myspace_post = 'post';
     if(this.lang == 'ja') {
       this.myspace_post = '投稿';
-    } else {
-      this.myspace_post = 'post';
     }
 
     // --- Odnoklassniki
@@ -495,10 +525,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.odnoklassniki_name = 'Odnoklassniki';
 
     // share
+    this.odnoklassniki_share = 'share';
     if(this.lang == 'ja') {
       this.odnoklassniki_share = '共有';
-    } else {
-      this.odnoklassniki_share = 'share';
     }
 
     // --- VKontakte
@@ -507,10 +536,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.vkontakte_name = 'VKontakte';
 
     // share
+    this.vkontakte_share = 'share';
     if(this.lang == 'ja') {
       this.vkontakte_share = '共有';
-    } else {
-      this.vkontakte_share = 'share';
     }
 
     // --- XING
@@ -519,10 +547,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.xing_name = 'XING';
 
     // share
+    this.xing_share = 'share';
     if(this.lang == 'ja') {
       this.xing_share = '共有';
-    } else {
-      this.xing_share = 'share';
     }
 
     // --- Yummly
@@ -531,9 +558,8 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.yummly_name = 'Yummly';
 
     // yum
+    this.yummly_yum = 'yum';
     if(this.lang == 'ja') {
-      this.yummly_yum = 'yum';
-    } else {
       this.yummly_yum = 'yum';
     }
 
@@ -543,10 +569,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.qzone_name = 'Qzone';
 
     // share
+    this.qzone_share = 'share';
     if(this.lang == 'ja') {
       this.qzone_share = '共有';
-    } else {
-      this.qzone_share = 'share';
     }
 
     // --- Skype
@@ -555,10 +580,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.skype_name = 'Skype';
 
     // print
+    this.skype_share = 'share';
     if(this.lang == 'ja') {
       this.skype_share = '共有';
-    } else {
-      this.skype_share = 'share';
     }
 
     // --- Viver
@@ -567,10 +591,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.viber_name = 'Viver';
 
     // forward
+    this.viber_forward = 'forward';
     if(this.lang == 'ja') {
       this.viber_forward = '送信';
-    } else {
-      this.viber_forward = 'forward';
     }
 
     // --- Print Friendly
@@ -579,26 +602,23 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.printfriendly_name = 'Print Friendly';
 
     // print
+    this.printfriendly_print = 'print';
     if(this.lang == 'ja') {
       this.printfriendly_print = '印刷';
-    } else {
-      this.printfriendly_print = 'print';
     }
 
     // --- Amazon WishList
 
     // name
+    this.amazon_wl_name = 'Amazon WishList';
     if(this.lang == 'ja') {
       this.amazon_wl_name = 'Amazon ほしい物リスト';
-    } else {
-      this.amazon_wl_name = 'Amazon WishList';
     }
 
     // add to wish list
+    this.amazon_wl_add = 'add to wish list';
     if(this.lang == 'ja') {
       this.amazon_wl_add = 'ほしい物リストに追加';
-    } else {
-      this.amazon_wl_add = 'add to wish list';
     }
 
     // --- GMail
@@ -607,10 +627,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.gmail_name = 'GMail';
 
     // send
+    this.gmail_send = 'send';
     if(this.lang == 'ja') {
       this.gmail_send = '送る';
-    } else {
-      this.gmail_send = 'send';
     }
 
     // --- RSS
@@ -619,10 +638,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.rss_name = 'RSS';
 
     // rss
+    this.rss_rss = 'RSS feed';
     if(this.lang == 'ja') {
       this.rss_rss = 'RSS フィード';
-    } else {
-      this.rss_rss = 'RSS feed';
     }
 
     // --- Feedly
@@ -631,10 +649,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.feedly_name = 'Feedly';
 
     // rss
+    this.feedly_rss = 'feed with Feedly';
     if(this.lang == 'ja') {
       this.feedly_rss = 'Feedlyで購読';
-    } else {
-      this.feedly_rss = 'feed with Feedly';
     }
 
     // --- Inoreader
@@ -643,10 +660,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.inoreader_name = 'Inoreader';
 
     // rss
+    this.inoreader_rss = 'feed with Inoreader';
     if(this.lang == 'ja') {
       this.inoreader_rss = 'Inoreaderで購読';
-    } else {
-      this.inoreader_rss = 'feed with Inoreader';
     }
 
     // --- SMS
@@ -655,10 +671,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.sms_name = 'SMS';
 
     // SMS
+    this.email_email = 'send SMS';
     if(this.lang == 'ja') {
       this.sms_sms = 'SMSを送る';
-    } else {
-      this.email_email = 'send SMS';
     }
 
     // --- E-mail
@@ -667,74 +682,65 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.email_name = 'E-mail';
 
     // E-mail
+    this.email_email = 'send E-mail';
     if(this.lang == 'ja') {
       this.email_email = 'E-mailを送る';
-    } else {
-      this.email_email = 'send E-mail';
     }
 
     // --- linkcopy
 
     // name
+    this.linkcopy_name = 'copy URL';
     if(this.lang == 'ja') {
       this.linkcopy_name = 'URLをコピー';
-    } else {
-      this.linkcopy_name = 'copy URL';
     }
 
     // copy
+    this.linkcopy_copy = 'copy URL';
     if(this.lang == 'ja') {
       this.linkcopy_copy = 'URLをコピー';
-    } else {
-      this.linkcopy_copy = 'copy URL';
     }
 
     // --- bookmark
 
     // name
+    this.bookmark_name = 'bookmaek';
     if(this.lang == 'ja') {
       this.bookmark_name = 'ブックマーク';
-    } else {
-      this.bookmark_name = 'bookmaek';
     }
 
     // bookmark
+    this.bookmark_bookmark = 'bookmark';
     if(this.lang == 'ja') {
       this.bookmark_bookmark = 'ブックマークする';
-    } else {
-      this.bookmark_bookmark = 'bookmark';
     }
 
     // --- print
 
     // name
+    this.print_name = 'print';
     if(this.lang == 'ja') {
       this.print_name = '印刷';
-    } else {
-      this.print_name = 'print';
     }
 
     // print
+    this.print_print = 'print out this page';
     if(this.lang == 'ja') {
       this.print_print = 'このページを印刷';
-    } else {
-      this.print_print = 'print out this page';
     }
 
     // --- other
 
     // name
+    this.other_name = 'other';
     if(this.lang == 'ja') {
       this.other_name = 'その他';
-    } else {
-      this.other_name = 'other';
     }
 
     // other
+    this.other_other = 'share to other';
     if(this.lang == 'ja') {
       this.other_other = 'その他の共有';
-    } else {
-      this.other_other = 'share to other';
     }
 
     /* === user setting end === */
@@ -756,17 +762,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.enURL = encodeURI(this.URL);
     this.entitle = encodeURI(this.title);
 
-    var metas = document.getElementsByTagName('meta');
-
-    var hashtag = '';
-    for(var i = 0; i < metas.length; i++) {
-      var meta = metas[i];
-      if(meta.getAttribute('property') == 'article:tag') {
-        if(hashtag == '') {
-          hashtag = meta.getAttribute('content');
-        }
-      }
-    }
+    var hashtag = azo_ssb_static.hashtag;
     if(links) {
       hashtag = links.hashtag;
     }
@@ -778,15 +774,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     }
     hashtag = encodeURI(hashtag);
 
-    var description = '';
-    for(var i = 0; i < metas.length; i++) {
-      var meta = metas[i];
-      if(meta.getAttribute('property') == 'og:description') {
-        if(description == '') {
-          description = meta.getAttribute('content');
-        }
-      }
-    }
+    var description = azo_ssb_static.description;
     if(links) {
       description = links.description;
     }
@@ -799,15 +787,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.description = description;
     this.endescription = encodeURI(description);
 
-    var image = '';
-    for(var i = 0; i < metas.length; i++) {
-      var meta = metas[i];
-      if(meta.getAttribute('property') == 'og:image') {
-        if(image == '') {
-          image = meta.getAttribute('content');
-        }
-      }
-    }
+    var image = azo_ssb_static.image;
     if(links) {
       image = links.image;
     }
@@ -836,25 +816,12 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
       rss = this.rss;
     }
     if(!RegExp('^[http://|https://]').test(rss)) {
-      rss = this.URL.match('(.+/).*$')[1] + rss;
+      if(rss != '') {
+        rss = this.URL.match('(.+/).*$')[1] + rss;
+      }
     }
     this.rss = rss;
     this.enrss = encodeURI(rss);
-
-    var appid = '';
-    for(var i = 0; i < metas.length; i++) {
-      var meta = metas[i];
-      if(meta.getAttribute('property') == 'fb:app_id') {
-        appid = meta.getAttribute('content');
-      }
-    }
-    if(!appid) {
-      appid = '';
-    }
-    if(this.facebook_appid != '') {
-      appid = this.facebook_appid;
-    }
-    this.facebook_appid = encodeURI(appid);
 
     var facebook_hashtag = '%23' + hashtag;
     if(this.facebook_hashtag != '') {
@@ -876,7 +843,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     } else {
       this.twitter_link = 'https://twitter.com/intent/tweet?text=' + this.entitle + '&url=' + this.enURL + '&hashtags=' + this.twitter_hashtag + '&via=' + this.twitter_account + '&related="' + this.twitter_account;
     }
-    this.facebook_link = 'https://www.facebook.com/dialog/share?app_id=' + this.facebook_appid + '&hashtag=' + this.facebook_hashtag + '&href=' + this.enURL;
+    this.facebook_link = 'https://www.facebook.com/dialog/share?app_id=' + azo_ssb_static.facebook_appid + '&hashtag=' + this.facebook_hashtag + '&href=' + this.enURL;
     this.hatena_link = 'https://b.hatena.ne.jp/bookmarklet?url=' + this.enURL + '&btitle=' + this.entitle;
     this.tumblr_link = 'https://www.tumblr.com/widgets/share/tool?posttype=link&canonicalUrl=' + this.enURL + '&title=' + this.entitle + '&caption=' + this.endescription;
     this.pocket_link = 'https://getpocket.com/save?url=' + this.enURL + '&title=' + this.entitle;
@@ -886,7 +853,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     this.evernote_link = 'https://www.evernote.com/clip.action?url=' + this.URL + '&title=' + this.entitle;
     this.whatsapp_link = 'https://api.whatsapp.com/send?text=' + this.entitle + '%0A' + this.enURL;
     this.weibo_link = 'https://service.weibo.com/share/share.php?url=' + this.enURL + '&title=' + this.entitle;
-    this.facebook_msg_link = 'https://www.facebook.com/dialog/send?app_id=' + this.facebook_appid + '&link=' + this.enURL;
+    this.facebook_msg_link = 'https://www.facebook.com/dialog/send?app_id=' + azo_ssb_static.facebook_appid + '&link=' + this.enURL;
     this.pinterest_link = 'http://pinterest.com/pin/create/button/?url=' + this.enURL + '&media=' + this.pinterest_media + '&description=' + this.entitle;
     this.linkedin_link = 'https://www.linkedin.com/shareArticle?mini=true&title=' + this.entitle + '&url=' + this.enURL;
     this.reddit_link = 'https://www.reddit.com/submit?url=' + this.enURL + '&title=' + this.entitle;
@@ -1019,7 +986,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
       case AZO_SSB_BTN_RSS:
       case AZO_SSB_BTN_FEEDLY:
       case AZO_SSB_BTN_INOREADER:
-        if(this.rss != '') {
+        if(this.rss == '') {
           break;
         }
       default:
@@ -1046,7 +1013,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     td.link = link;
     td.azo_ssb = this;
     td.title = title;
-    if(setting.button_type == AZO_SSB_BTNT_ICON_LABEL || setting.button_type == AZO_SSB_BTNT_ICON) {
+    if(setting.button_type == AZO_SSB_BTNT_ICON_LABEL || setting.button_type == AZO_SSB_BTNT_ICON || setting.button_type == AZO_SSB_BTNT_ICON_LABEL_NL) {
       var img = document.createElement('img');
       img.className = 'azo_ssb_icon_' + setting.name;
       img.src = imgurl;
@@ -1055,7 +1022,11 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
       img.title = title;
       td.appendChild(img);
     }
-    if(setting.button_type == AZO_SSB_BTNT_ICON_LABEL || setting.button_type == AZO_SSB_BTNT_LABEL) {
+    if(setting.button_type == AZO_SSB_BTNT_ICON_LABEL_NL) {
+      var br = document.createElement('br');
+      td.appendChild(br);
+    }
+    if(setting.button_type == AZO_SSB_BTNT_ICON_LABEL || setting.button_type == AZO_SSB_BTNT_LABEL || setting.button_type == AZO_SSB_BTNT_ICON_LABEL_NL) {
       var span = document.createElement('span');
       span.link = link;
       span.azo_ssb = this;
@@ -1097,9 +1068,9 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     case AZO_SSB_BTN_EVERNOTE:
       this.add_btn3(setting, tr, 'azo_ssb_btn_evernote-', azo_ssb_home + 'icons_addtoany/evernote.svg', this.evernote_name, this.evernote_clip, this.evernote_link, function(event) { window.open(event.target.link, '_blank'); });
       break;
-  //  case AZO_SSB_BTN_HANGOUT:
-  //    this.add_btn3(setting, tr, 'azo_ssb_btn_hangout-', azo_ssb_home + 'icons_addtoany/hangout.svg', this.hangout_name, this.hangout_send, this.hangout_link, function(event) { window.open(event.target.link, '_blank'); });
-  //    break;
+//    case AZO_SSB_BTN_HANGOUT:
+//      this.add_btn3(setting, tr, 'azo_ssb_btn_hangout-', azo_ssb_home + 'icons_addtoany/hangout.svg', this.hangout_name, this.hangout_send, this.hangout_link, function(event) { window.open(event.target.link, '_blank'); });
+//      break;
     case AZO_SSB_BTN_WHATSAPP:
       this.add_btn3(setting, tr, 'azo_ssb_btn_whatsapp-', azo_ssb_home + 'icons_addtoany/whatsapp.svg', this.whatsapp_name, this.whatsapp_send, this.whatsapp_link, function(event) { window.open(event.target.link, '_blank'); });
       break;
@@ -1107,7 +1078,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
       this.add_btn3(setting, tr, 'azo_ssb_btn_weibo-', azo_ssb_home + 'icons_addtoany/sina_weibo.svg', this.weibo_name, this.weibo_share, this.weibo_link, function(event) { window.open(event.target.link, '_blank'); });
       break;
     case AZO_SSB_BTN_FBMESSAGE:
-      this.add_btn3(setting, tr, 'azo_ssb_btn_facebook_msg-', azo_ssb_home + 'icons_addtoany/facebook_messenger.svg', this.facebook_msg_name, this.facebook_msg_send, this.facebook_msg_link, function(event) { window.open(event.target.link, '_blank'); });
+      this.add_btn3(setting, tr, 'azo_ssb_btn_facebook_msg-', azo_ssb_home + 'icons_addtoany/facebook_messenger.svg', this.facebook_msg_name, this.facebook_msg_send, this.facebook_msg_link, function(event) { FB.ui({ method: 'send', link: event.target.azo_ssb.URL}); });
       break;
     case AZO_SSB_BTN_PINTEREST:
       this.add_btn3(setting, tr, 'azo_ssb_btn_pinterest-', azo_ssb_home + 'icons_addtoany/pinterest.svg', this.pinterest_name, this.pinterest_pinit, this.pinterest_link, function(event) { window.open(event.target.link, '_blank'); });
@@ -1270,8 +1241,10 @@ function azo_ssb_array_add(azo_ssb_setting) {
   azo_ssb_array.push(ssb);
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', function(event) {
   if(azo_ssb_array.length > 0) {
+    azo_ssb_preinit();
+
     azo_ssb_head();
     azo_ssb_top();
     azo_ssb_bottom();
