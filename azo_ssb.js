@@ -182,7 +182,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     // --- azo_ssb Common
 
     // hashtag (omit hash)
-    this.hashtag = 'AZO234';
+    this.hashtag = '';
     // description (if <meta property="og:description" content="(description)"> set, blank OK)
     this.description = '';
     // image (must http:// or https:// first / if <meta property="og:image" content="(image URL)"> set, blank OK)
@@ -195,7 +195,7 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     // Twitter hashtags (omit hash / prior to common)
     this.twitter_hashtag = '';
     // Twitter account (for follow / omit atmark)
-    this.twitter_account = 'AZO234';
+    this.twitter_account = '';
 
     // name
     this.twitter_name = 'Twitter';
