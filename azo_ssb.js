@@ -176,9 +176,6 @@ if(typeof azo_ssb === 'undefined') { var azo_ssb = function(setting) {
     }
   }
   this.modaldiv.azo_ssb = this;
-
-  this.locale = azo_ssb_static.locale;
-  this.lang = azo_ssb_static.lang;
 };}
 
 azo_ssb.prototype.copy_link = function() {
@@ -199,7 +196,7 @@ azo_ssb.prototype.add_favorite = function() {
   } else if(document.all) {
     window.external.AddFavorite(this.URL, this.title);
   } else {
-    if(this.lang == 'ja') {
+    if(azo_ssb_static.lang == 'ja') {
       alert('ご利用のブラウザでは、Ctrl+D でブックマークを追加してください。');
     } else {
       alert('To add bookmark, press Ctrl+D .');
@@ -235,7 +232,7 @@ azo_ssb.prototype.init = function() {
 
   // tweet
   this.twitter_tweet = 'tweet';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.twitter_tweet = 'ツイート';
   }
 
@@ -249,14 +246,14 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.facebook_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.facebook_share = 'シェア';
   }
 
   // --- Hatena
 
   // name
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.hatena_name = 'はてな';
   } else {
     this.hatena_name = 'Hatena';
@@ -264,7 +261,7 @@ azo_ssb.prototype.init = function() {
 
   // bookmark
   this.hatena_bookmark = 'bookmark';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.hatena_bookmark = 'ブックマーク';
   }
 
@@ -275,7 +272,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.tumblr_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.tumblr_share = 'シェア';
   }
 
@@ -286,7 +283,7 @@ azo_ssb.prototype.init = function() {
 
   // pocket
   this.pocket_pocket = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.pocket_pocket = 'ポケット';
   }
 
@@ -297,7 +294,7 @@ azo_ssb.prototype.init = function() {
 
   // send
   this.line_send = 'send';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.line_send = '送る';
   }
 
@@ -311,7 +308,7 @@ azo_ssb.prototype.init = function() {
 
   // check
   this.mixi_check = 'check';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.mixi_check = 'チェック';
   }
 
@@ -322,7 +319,7 @@ azo_ssb.prototype.init = function() {
 
   // bookmark
   this.gbookmark_bookmark = 'bookmark';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.gbookmark_bookmark = 'ブックマーク';
   }
 
@@ -333,7 +330,7 @@ azo_ssb.prototype.init = function() {
 
   // clip
   this.evernote_clip = 'clip';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.evernote_clip = 'クリップ';
   }
 
@@ -344,7 +341,7 @@ azo_ssb.prototype.init = function() {
 
   // send
   this.hangout_send = 'send';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.hangout_send = '送る';
   }
 
@@ -355,7 +352,7 @@ azo_ssb.prototype.init = function() {
 
   // send
   this.whatsapp_send = 'send';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.whatsapp_send = '送る';
   }
 
@@ -366,7 +363,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.weibo_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.weibo_share = '共有';
   }
 
@@ -380,7 +377,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.facebook_msg_send = 'send';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.facebook_msg_send = '送る';
   }
 
@@ -394,7 +391,7 @@ azo_ssb.prototype.init = function() {
 
   // pin it
   this.pinterest_pinit = 'Pin-it';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.pinterest_pinit = '保存';
   }
 
@@ -405,7 +402,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.linkedin_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.linkedin_share = '共有';
   }
 
@@ -416,7 +413,7 @@ azo_ssb.prototype.init = function() {
 
   // post
   this.reddit_post = 'post';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.reddit_post = '投稿';
   }
 
@@ -428,7 +425,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.telegram_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.telegram_share = '共有';
   }
 
@@ -439,7 +436,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.renren_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.renren_share = '共有';
   }
 
@@ -450,7 +447,7 @@ azo_ssb.prototype.init = function() {
 
   // read later
   this.buffer_readlater = 'read later';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.buffer_readlater = '後で読む';
   }
 
@@ -461,7 +458,7 @@ azo_ssb.prototype.init = function() {
 
   // blog this
   this.blogger_blogthis = 'blog this';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.blogger_blogthis = '記事を作成';
   }
 
@@ -472,7 +469,7 @@ azo_ssb.prototype.init = function() {
 
   // submit
   this.digg_submit = 'submit';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.digg_submit = '送信';
   }
 
@@ -483,7 +480,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.flipboard_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.flipboard_share = '共有';
   }
 
@@ -494,7 +491,7 @@ azo_ssb.prototype.init = function() {
 
   // add
   this.instapaper_add = 'add';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.instapaper_add = '追加';
   }
 
@@ -505,7 +502,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.qq_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.qq_share = '共有';
   }
 
@@ -516,7 +513,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.kakao_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.kakao_share = '共有';
   }
 
@@ -527,7 +524,7 @@ azo_ssb.prototype.init = function() {
 
   // save
   this.onenote_save = 'save';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.onenote_save = '保存';
   }
 
@@ -538,7 +535,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.known_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.known_share = '共有';
   }
 
@@ -549,7 +546,7 @@ azo_ssb.prototype.init = function() {
 
   // post
   this.myspace_post = 'post';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.myspace_post = '投稿';
   }
 
@@ -560,7 +557,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.odnoklassniki_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.odnoklassniki_share = '共有';
   }
 
@@ -571,7 +568,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.vkontakte_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.vkontakte_share = '共有';
   }
 
@@ -582,7 +579,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.xing_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.xing_share = '共有';
   }
 
@@ -593,7 +590,7 @@ azo_ssb.prototype.init = function() {
 
   // yum
   this.yummly_yum = 'yum';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.yummly_yum = 'yum';
   }
 
@@ -604,7 +601,7 @@ azo_ssb.prototype.init = function() {
 
   // share
   this.qzone_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.qzone_share = '共有';
   }
 
@@ -615,7 +612,7 @@ azo_ssb.prototype.init = function() {
 
   // print
   this.skype_share = 'share';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.skype_share = '共有';
   }
 
@@ -626,7 +623,7 @@ azo_ssb.prototype.init = function() {
 
   // forward
   this.viber_forward = 'forward';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.viber_forward = '送信';
   }
 
@@ -637,7 +634,7 @@ azo_ssb.prototype.init = function() {
 
   // print
   this.printfriendly_print = 'print';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.printfriendly_print = '印刷';
   }
 
@@ -645,13 +642,13 @@ azo_ssb.prototype.init = function() {
 
   // name
   this.amazon_wl_name = 'Amazon WishList';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.amazon_wl_name = 'Amazon ほしい物リスト';
   }
 
   // add to wish list
   this.amazon_wl_add = 'add to wish list';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.amazon_wl_add = 'ほしい物リストに追加';
   }
 
@@ -662,7 +659,7 @@ azo_ssb.prototype.init = function() {
 
   // send
   this.gmail_send = 'send';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.gmail_send = '送る';
   }
 
@@ -673,7 +670,7 @@ azo_ssb.prototype.init = function() {
 
   // rss
   this.rss_rss = 'RSS feed';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.rss_rss = 'RSS フィード';
   }
 
@@ -684,7 +681,7 @@ azo_ssb.prototype.init = function() {
 
   // rss
   this.feedly_rss = 'feed with Feedly';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.feedly_rss = 'Feedlyで購読';
   }
 
@@ -695,7 +692,7 @@ azo_ssb.prototype.init = function() {
 
   // rss
   this.inoreader_rss = 'feed with Inoreader';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.inoreader_rss = 'Inoreaderで購読';
   }
 
@@ -706,7 +703,7 @@ azo_ssb.prototype.init = function() {
 
   // SMS
   this.email_email = 'send SMS';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.sms_sms = 'SMSを送る';
   }
 
@@ -717,7 +714,7 @@ azo_ssb.prototype.init = function() {
 
   // E-mail
   this.email_email = 'send E-mail';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.email_email = 'E-mailを送る';
   }
 
@@ -725,13 +722,13 @@ azo_ssb.prototype.init = function() {
 
   // name
   this.linkcopy_name = 'copy URL';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.linkcopy_name = 'URLをコピー';
   }
 
   // copy
   this.linkcopy_copy = 'copy URL';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.linkcopy_copy = 'URLをコピー';
   }
 
@@ -739,13 +736,13 @@ azo_ssb.prototype.init = function() {
 
   // name
   this.bookmark_name = 'bookmaek';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.bookmark_name = 'ブックマーク';
   }
 
   // bookmark
   this.bookmark_bookmark = 'bookmark';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.bookmark_bookmark = 'ブックマークする';
   }
 
@@ -753,13 +750,13 @@ azo_ssb.prototype.init = function() {
 
   // name
   this.print_name = 'print';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.print_name = '印刷';
   }
 
   // print
   this.print_print = 'print out this page';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.print_print = 'このページを印刷';
   }
 
@@ -767,13 +764,13 @@ azo_ssb.prototype.init = function() {
 
   // name
   this.other_name = 'other';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.other_name = 'その他';
   }
 
   // other
   this.other_other = 'share to other';
-  if(this.lang == 'ja') {
+  if(azo_ssb_static.lang == 'ja') {
     this.other_other = 'その他の共有';
   }
 
