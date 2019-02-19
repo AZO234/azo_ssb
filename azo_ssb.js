@@ -101,11 +101,14 @@ function azo_ssb_preinit() {
   for(var i = 0; i < links.length; i++) {
     var link = links[i];
     if(link.getAttribute('rel') == 'alternate')
-      if(
-        link.getAttribute('title') == 'RSS' ||
-        link.getAttribute('title') == 'RSS2.0' ||
-        link.getAttribute('title') == 'Atom'
-      ) {
+      var rss = 0;
+      if(RegExp('^[Rr][Ss][Ss]').test(link.getAttribute('title')) {
+        rss = 1;
+      }
+      if(RegExp('^[Aa][Tt][Oo][Mm]').test(link.getAttribute('title')) {
+        rss = 1;
+      }
+      if(rss == 1) {
         if(azo_ssb_static.rss == '') {
           azo_ssb_static.rss = link.getAttribute('href');
         }
