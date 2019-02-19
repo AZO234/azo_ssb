@@ -100,18 +100,24 @@ function azo_ssb_preinit() {
   azo_ssb_static.rss = '';
   for(var i = 0; i < links.length; i++) {
     var link = links[i];
-    if(link.getAttribute('rel') == 'alternate')
-      var rss = 0;
-      if(RegExp('^[Rr][Ss][Ss]').test(link.getAttribute('title')) {
-        rss = 1;
-      }
-      if(RegExp('^[Aa][Tt][Oo][Mm]').test(link.getAttribute('title')) {
-        rss = 1;
-      }
-      if(rss == 1) {
-        if(azo_ssb_static.rss == '') {
-          azo_ssb_static.rss = link.getAttribute('href');
-        }
+    if(link.getAttribute('rel') == 'alternate') {
+      if(
+        link.getAttribute('type') == 'application/rss' ||
+        link.getAttribute('type') == 'application/rss+xml' ||
+        link.getAttribute('type') == 'application/xml+rss' ||
+        link.getAttribute('type') == 'application/rdf' ||
+        link.getAttribute('type') == 'application/rdf+xml' ||
+        link.getAttribute('type') == 'application/xml+rdf' ||
+        link.getAttribute('type') == 'application/atom' ||
+        link.getAttribute('type') == 'application/atom+xml' ||
+        link.getAttribute('type') == 'application/atomcat+xml' ||
+        link.getAttribute('type') == 'application/atomsvc+xml' ||
+        link.getAttribute('type') == 'application/xml+atom' ||
+        link.getAttribute('type') == 'application/xml+atomcat' ||
+        link.getAttribute('type') == 'application/xml+atomsvc'
+      )
+      if(azo_ssb_static.rss == '') {
+        azo_ssb_static.rss = link.getAttribute('href');
       }
     }
   }
