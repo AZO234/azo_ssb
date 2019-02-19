@@ -100,9 +100,15 @@ function azo_ssb_preinit() {
   azo_ssb_static.rss = '';
   for(var i = 0; i < links.length; i++) {
     var link = links[i];
-    if(link.getAttribute('rel') == 'alternate' && link.getAttribute('title') == 'RSS') {
-      if(azo_ssb_static.rss == '') {
-        azo_ssb_static.rss = link.getAttribute('href');
+    if(link.getAttribute('rel') == 'alternate')
+      if(
+        link.getAttribute('title') == 'RSS' ||
+        link.getAttribute('title') == 'RSS2.0' ||
+        link.getAttribute('title') == 'Atom'
+      ) {
+        if(azo_ssb_static.rss == '') {
+          azo_ssb_static.rss = link.getAttribute('href');
+        }
       }
     }
   }
