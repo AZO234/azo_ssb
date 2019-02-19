@@ -65,6 +65,7 @@ function azo_ssb_preinit() {
   azo_ssb_static.lang = azo_ssb_static.locale.split('-')[0];
 
   var metas = document.getElementsByTagName('meta');
+  var links = document.getElementsByTagName('link');
 
   azo_ssb_static.hashtag = '';
   for(var i = 0; i < metas.length; i++) {
@@ -93,6 +94,53 @@ function azo_ssb_preinit() {
       if(azo_ssb_static.image == '') {
         azo_ssb_static.image = meta.getAttribute('content');
       }
+    }
+  }
+
+  azo_ssb_static.rss = '';
+  for(var i = 0; i < links.length; i++) {
+    var link = links[i];
+    if(link.getAttribute('rel') == 'alternate' && link.getAttribute('title') == 'RSS') {
+      if(azo_ssb_static.rss == '') {
+        azo_ssb_static.rss = link.getAttribute('href');
+      }
+    }
+  }
+
+  azo_ssb_static.twitter_site = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'twitter:site') {
+      if(azo_ssb_static.twitter_site == '') {
+        azo_ssb_static.twitter_site = meta.getAttribute('content');
+      }
+    }
+  }
+
+  azo_ssb_static.twitter_creator = '';
+  for(var i = 0; i < metas.length; i++) {
+    var meta = metas[i];
+    if(meta.getAttribute('property') == 'twitter:creator') {
+      if(azo_ssb_static.twitter_creator == '') {
+        azo_ssb_static.twitter_creator = meta.getAttribute('content');
+      }
+    }
+  }
+
+  azo_ssb_static.twitter_account_follow = '';
+  var res = /^@(.+)/.exec(azo_ssb_static.twitter_site);
+  if(res) {
+    if(res[1] != '') {
+      azo_ssb_static.twitter_account_follow = res[1];
+     }
+  }
+  res = /^@(.+)/.exec(azo_ssb_static.twitter_creator);
+  if(res) {
+    if(res[1] != '') {
+      if(azo_ssb_static.twitter_account_follow != '') {
+        azo_ssb_static.twitter_account_follow += ',';
+      }
+      azo_ssb_static.twitter_account_follow += res[1];
     }
   }
 
@@ -831,13 +879,7 @@ azo_ssb.prototype.change_links = function(links) {
   this.enimage = encodeURI(image);
   this.encimage = encodeURIComponent(image);
 
-  var twitter_hashtag = hashtag;
-  if(this.twitter_hashtag != '') {
-    twitter_hashtag = encodeURI(this.twitter_hashtag);
-  }
-  this.twitter_hashtag = twitter_hashtag;
-
-  var rss = '';
+  var rss = azo_ssb_static.rss;
   if(this.rss != '') {
     rss = this.rss;
   }
@@ -849,6 +891,18 @@ azo_ssb.prototype.change_links = function(links) {
   this.rss = rss;
   this.enrss = encodeURI(rss);
   this.encrss = encodeURIComponent(rss);
+
+  var twitter_hashtag = hashtag;
+  if(this.twitter_hashtag != '') {
+    twitter_hashtag = encodeURI(this.twitter_hashtag);
+  }
+  this.twitter_hashtag = twitter_hashtag;
+
+  var twitter_account_follow = azo_ssb_static.twitter_account_follow
+  if(this.twitter_account_follow != '') {
+    twitter_account_follow = this.twitter_account_follow;
+  }
+  this.twitter_account_follow = twitter_account_follow;
 
   var facebook_hashtag;
   if(hashtag != '') {
