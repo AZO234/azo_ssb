@@ -1411,7 +1411,17 @@ azo_ssb.prototype.setting_btn = function() {
       var tr = document.createElement('tr');
       for(var column = 0; column < this.setting.table_column; column++) {
         if(num < this.setting.buttons.length) {
-          this.add_btn2(this.setting, tr, this.setting.buttons[num]);
+          switch(this.setting.buttons[num]) {
+          case AZO_SSB_BTN_RSS:
+          case AZO_SSB_BTN_FEEDLY:
+          case AZO_SSB_BTN_INOREADER:
+            if(this.rss == '') {
+              column--;
+              break;
+            }
+          default:
+            this.add_btn2(this.setting, tr, this.setting.buttons[num]);
+          }
         } else {
           this.add_btn2(this.setting, tr, this.btnt_spc);
         }
@@ -1423,7 +1433,17 @@ azo_ssb.prototype.setting_btn = function() {
     while(num < this.setting.buttons.length) {
       var tr = document.createElement('tr');
       for(var column = 0; column < this.setting.table_column; column++) {
-        this.add_btn2(this.setting, tr, this.setting.buttons[num]);
+        switch(this.setting.buttons[num]) {
+        case AZO_SSB_BTN_RSS:
+        case AZO_SSB_BTN_FEEDLY:
+        case AZO_SSB_BTN_INOREADER:
+          if(this.rss == '') {
+            column--;
+            break;
+          }
+        default:
+          this.add_btn2(this.setting, tr, this.setting.buttons[num]);
+        }
         num++;
       }
       this.table.appendChild(tr);
@@ -1431,14 +1451,34 @@ azo_ssb.prototype.setting_btn = function() {
   } else if(this.setting.table_column <= 0 && this.setting.table_row > 0){
     for(var row = 0; row < this.setting.buttons.length; row++) {
       var tr = document.createElement('tr');
-      this.add_btn2(this.setting, tr, this.setting.buttons[num]);
+      switch(this.setting.buttons[num]) {
+      case AZO_SSB_BTN_RSS:
+      case AZO_SSB_BTN_FEEDLY:
+      case AZO_SSB_BTN_INOREADER:
+        if(this.rss == '') {
+          row--;
+          break;
+        }
+      default:
+        this.add_btn2(this.setting, tr, this.setting.buttons[num]);
+      }
       num++;
       this.table.appendChild(tr);
     }
   } else {
     var tr = document.createElement('tr');
     for(var column = 0; column < this.setting.buttons.length; column++) {
-      this.add_btn2(this.setting, tr, this.setting.buttons[num]);
+      switch(this.setting.buttons[num]) {
+      case AZO_SSB_BTN_RSS:
+      case AZO_SSB_BTN_FEEDLY:
+      case AZO_SSB_BTN_INOREADER:
+        if(this.rss == '') {
+          column--;
+          break;
+        }
+      default:
+        this.add_btn2(this.setting, tr, this.setting.buttons[num]);
+      }
       num++;
     }
     this.table.appendChild(tr);
