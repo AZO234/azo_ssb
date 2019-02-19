@@ -115,9 +115,10 @@ function azo_ssb_preinit() {
         link.getAttribute('type') == 'application/xml+atom' ||
         link.getAttribute('type') == 'application/xml+atomcat' ||
         link.getAttribute('type') == 'application/xml+atomsvc'
-      )
-      if(azo_ssb_static.rss == '') {
-        azo_ssb_static.rss = link.getAttribute('href');
+      ) {
+        if(azo_ssb_static.rss == '') {
+          azo_ssb_static.rss = link.getAttribute('href');
+        }
       }
     }
   }
