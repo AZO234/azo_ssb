@@ -9,145 +9,151 @@ table[class^="azo_ssb"] td {
 table[class^="azo_ssb"] td img {
   vertical-align: middle;
 }
-[class^="azo_ssb_btn_twitter-"] {
+[class^="azo_ssb_btn_twitter_"] {
   background-color: #55ACEE;
 }
-[class^="azo_ssb_btn_facebook-"] {
+[class^="azo_ssb_btn_facebook_"] {
   background-color: #3B5998;
 }
-[class^="azo_ssb_btn_hatena-"] {
+[class^="azo_ssb_btn_hatena_"] {
   background-color: #00A6DB;
 }
-[class^="azo_ssb_btn_tumblr-"] {
+[class^="azo_ssb_btn_tumblr_"] {
   background-color: #35465C;
 }
-[class^="azo_ssb_btn_pocket-"] {
+[class^="azo_ssb_btn_pocket_"] {
   background-color: #EE4056;
 }
-[class^="azo_ssb_btn_line-"] {
+[class^="azo_ssb_btn_line_"] {
   background-color: #00C300;
 }
-[class^="azo_ssb_btn_mixi-"] {
+[class^="azo_ssb_btn_mixi_"] {
   background-color: #D1AD5A;
 }
-[class^="azo_ssb_btn_gbookmark-"] {
+[class^="azo_ssb_btn_gbookmark_"] {
   background-color: #4285F4;
 }
-[class^="azo_ssb_btn_evernote-"] {
+[class^="azo_ssb_btn_evernote_"] {
   background-color: #00A82D;
 }
-[class^="azo_ssb_btn_hangout-"] {
+[class^="azo_ssb_btn_hangout_"] {
   background-color: #29A163;
 }
-[class^="azo_ssb_btn_whatsapp-"] {
+[class^="azo_ssb_btn_whatsapp_"] {
   background-color: #29E77D;
 }
-[class^="azo_ssb_btn_weibo-"] {
+[class^="azo_ssb_btn_weibo_"] {
   background-color: #E7112E;
 }
-[class^="azo_ssb_btn_facebook_msg-"] {
+[class^="azo_ssb_btn_facebook_msg_"] {
   background-color: #0084FF;
 }
-[class^="azo_ssb_btn_pinterest-"] {
+[class^="azo_ssb_btn_pinterest_"] {
   background-color: #BD081C;
 }
-[class^="azo_ssb_btn_linkedin-"] {
+[class^="azo_ssb_btn_linkedin_"] {
   background-color: #007BB5;
 }
-[class^="azo_ssb_btn_reddit-"] {
+[class^="azo_ssb_btn_reddit_"] {
   background-color: #FF4500;
 }
-[class^="azo_ssb_btn_telegram-"] {
+[class^="azo_ssb_btn_telegram_"] {
   background-color: #329DDE;
 }
-[class^="azo_ssb_btn_renren-"] {
+[class^="azo_ssb_btn_renren_"] {
   background-color: #005EAC;
 }
-[class^="azo_ssb_btn_buffer-"] {
+[class^="azo_ssb_btn_buffer_"] {
   background-color: #2A2A2A;
 }
-[class^="azo_ssb_btn_blogger-"] {
+[class^="azo_ssb_btn_blogger_"] {
   background-color: #FDA352;
 }
-[class^="azo_ssb_btn_digg-"] {
+[class^="azo_ssb_btn_digg_"] {
   background-color: #2A2A2A;
 }
-[class^="azo_ssb_btn_flipboard-"] {
+[class^="azo_ssb_btn_flipboard_"] {
   background-color: #CC0000;
 }
-[class^="azo_ssb_btn_instapaper-"] {
+[class^="azo_ssb_btn_instapaper_"] {
   background-color: #2A2A2A;
 }
-[class^="azo_ssb_btn_qq-"] {
+[class^="azo_ssb_btn_qq_"] {
   background-color: #2A2122;
 }
-[class^="azo_ssb_btn_kakao-"] {
+[class^="azo_ssb_btn_kakao_"] {
   background-color: #FCB700;
 }
-[class^="azo_ssb_btn_onenote-"] {
+[class^="azo_ssb_btn_onenote_"] {
   background-color: #7609A5;
 }
-[class^="azo_ssb_btn_known-"] {
+[class^="azo_ssb_btn_outlook_email_"] {
+  background-color: #0072C6;
+}
+[class^="azo_ssb_btn_outlook_calender_"] {
+  background-color: #0072C6;
+}
+[class^="azo_ssb_btn_known_"] {
   background-color: #2A2A2A;
 }
-[class^="azo_ssb_btn_myspace-"] {
+[class^="azo_ssb_btn_myspace_"] {
   background-color: #2A2A2A;
 }
-[class^="azo_ssb_btn_odnoklassniki-"] {
+[class^="azo_ssb_btn_odnoklassniki_"] {
   background-color: #F2720C;
 }
-[class^="azo_ssb_btn_vkontakte"] {
+[class^="azo_ssb_btn_vkontakte_"] {
   background-color: #587EA3;
 }
-[class^="azo_ssb_btn_xing-"] {
+[class^="azo_ssb_btn_xing_"] {
   background-color: #165B66;
 }
-[class^="azo_ssb_btn_yummly-"] {
+[class^="azo_ssb_btn_yummly_"] {
   background-color: #E16120;
 }
-[class^="azo_ssb_btn_qzone-"] {
+[class^="azo_ssb_btn_qzone_"] {
   background-color: #F9C03F;
 }
-[class^="azo_ssb_btn_skype-"] {
+[class^="azo_ssb_btn_skype_"] {
   background-color: #00AFF0;
 }
-[class^="azo_ssb_btn_viber"] {
+[class^="azo_ssb_btn_viber_"] {
   background-color: #7C529E;
 }
-[class^="azo_ssb_btn_printfriendly-"] {
+[class^="azo_ssb_btn_printfriendly_"] {
   background-color: #6D9F00;
 }
-[class^="azo_ssb_btn_amazon_wl-"] {
+[class^="azo_ssb_btn_amazon_wl_"] {
   background-color: #FF9900;
 }
-[class^="azo_ssb_btn_gmail-"] {
+[class^="azo_ssb_btn_gmail_"] {
   background-color: #DD5347;
 }
-[class^="azo_ssb_btn_rss-"] {
+[class^="azo_ssb_btn_rss_"] {
   background-color: #F07700;
 }
-[class^="azo_ssb_btn_feedly-"] {
+[class^="azo_ssb_btn_feedly_"] {
   background-color: #2BB24C;
 }
-[class^="azo_ssb_btn_inoreader-"] {
+[class^="azo_ssb_btn_inoreader_"] {
   background-color: #00A2D7;
 }
-[class^="azo_ssb_btn_sms-"] {
+[class^="azo_ssb_btn_sms_"] {
   background-color: #00CCCC;
 }
-[class^="azo_ssb_btn_email-"] {
+[class^="azo_ssb_btn_email_"] {
   background-color: #0000CC;
 }
-[class^="azo_ssb_btn_linkcopy-"] {
+[class^="azo_ssb_btn_linkcopy_"] {
   background-color: #888888;
 }
-[class^="azo_ssb_btn_bookmark-"] {
+[class^="azo_ssb_btn_bookmark_"] {
   background-color: #888888;
 }
-[class^="azo_ssb_btn_print-"] {
+[class^="azo_ssb_btn_print_"] {
   background-color: #888888;
 }
-[class^="azo_ssb_btn_other-"] {
+[class^="azo_ssb_btn_other_"] {
   background-color: #0166ff;
 }
 [class^="azo_ssb_modal_"] {
