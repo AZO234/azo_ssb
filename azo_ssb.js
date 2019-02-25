@@ -1015,15 +1015,12 @@ azo_ssb.prototype.change_links = function(links) {
   this.twitter_account_follow = twitter_account_follow;
 
   var facebook_hashtag = hashtag;
-  if(this.twitter_hashtag != '') {
-    hashtag = this.twitter_hashtag;
+  if(this.facebook_hashtag != '') {
+    hashtag = this.facebook_hashtag;
   }
-  tags = hashtag.split(' ');
-  if(tags) {
-    hashtag = tags.join('');
-  }
-  if(hashtag != '') {
-    hashtag = '#' + hashtag;
+  var tag = hashtag.split(' ')[0];
+  if(tag != '') {
+    hashtag = '#' + tag;
   }
   this.facebook_hashtag = encodeURIComponent(hashtag);
 
