@@ -62,6 +62,27 @@ var azo_ssb_static = {};
 // azo_ssb home directory (must http:// or https:// first / must slash(/) end / empty to debug)
 var azo_ssb_home = '';
 
+function azo_ssb_viewport_setsize() {
+  var viewmode = azo_viewport_get_mode();
+
+  var tables = document.getElementsByTagName('table');
+  for(var i = 0; i < tables.length; i++) {
+    if(/^azo_ssb_overlay_table_/.test(tables[i].className)) {
+      if(viewmode == 'pc') {
+        tables[i].style.top = '10%';
+        tables[i].style.left = '30%';
+        tables[i].style.width = '40%';
+        tables[i].style.height = '80%';
+      } else {
+        tables[i].style.top = '10%';
+        tables[i].style.left = '10%';
+        tables[i].style.width = '80%';
+        tables[i].style.height = '80%';
+      }
+    }
+  }
+}
+
 function azo_ssb_preinit() {
   azo_ssb_static.locale = navigator.language || navigator.userLanguage;
   azo_ssb_static.lang = azo_ssb_static.locale.split('-')[0];
@@ -185,6 +206,11 @@ function azo_ssb_head() {
   css.rel = 'stylesheet';
   css.href = azo_ssb_home + 'azo_ssb.css';
   document.getElementsByTagName('head')[0].appendChild(css);
+
+  // azo_viewport
+  var script = document.createElement('script');
+  script.src = azo_ssb_home + 'azo_viewport.js';
+  document.getElementsByTagName('head')[0].appendChild(script);
 }
 
 function azo_ssb_top() {
@@ -1557,6 +1583,10 @@ function azo_ssb_array_add(azo_ssb_setting) {
   azo_ssb_array.push(ssb);
   return ssb;
 }
+
+window.addEventListener('load', function(event) {
+  azo_ssb_viewport_setsize();
+});
 
 document.addEventListener('DOMContentLoaded', function(event) {
   if(azo_ssb_array.length > 0) {
