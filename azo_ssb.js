@@ -315,7 +315,7 @@ azo_ssb.prototype.init = function() {
 
   // --- Twitter
 
-  // Twitter hashtags (omit hash / prior to common)
+  // Twitter hashtags (omit hash / tags mark off by commma / prior to common)
   this.twitter_hashtag = '';
   // Twitter account (for via / omit atmark)
   this.twitter_account_via = '';
@@ -333,7 +333,7 @@ azo_ssb.prototype.init = function() {
 
   // --- Facebook share
 
-  // Facebook hashtags (omit hash / prior to common)
+  // Facebook hashtags (omit hash / tags mark off by commma / prior to common)
   this.facebook_hashtag = '';
 
   // name
@@ -925,7 +925,24 @@ azo_ssb.prototype.change_links = function(links) {
   if(!hashtag) {
     hashtag = '';
   }
-  hashtag = encodeURI(hashtag);
+  var tags = hashtag.split(' ');
+  if(tags) {
+    hashtag = tags.join('');
+  }
+  tags = hashtag.split(',');
+  hashtag = '';
+  if(tags) {
+    for(var i = 0; i < tags.length; i++) {
+      if(tags[i] != '') {
+        hashtag += tags[i];
+        if(i != tags.length - 1) {
+          hashtag += ',';
+        }
+      }
+    }
+  } else {
+    hashtag = '';
+  }
 
   var description = azo_ssb_static.description;
   if(links) {
@@ -969,9 +986,27 @@ azo_ssb.prototype.change_links = function(links) {
 
   var twitter_hashtag = hashtag;
   if(this.twitter_hashtag != '') {
-    twitter_hashtag = encodeURI(this.twitter_hashtag);
+    hashtag += ',' + this.twitter_hashtag;
   }
-  this.twitter_hashtag = twitter_hashtag;
+  tags = hashtag.split(' ');
+  if(tags) {
+    hashtag = tags.join('');
+  }
+  tags = hashtag.split(',');
+  hashtag = '';
+  if(tags) {
+    for(var i = 0; i < tags.length; i++) {
+      if(tags[i] != '') {
+        hashtag += tags[i];
+        if(i != tags.length - 1) {
+          hashtag += ',';
+        }
+      }
+    }
+  } else {
+    hashtag = '';
+  }
+  this.twitter_hashtag = encodeURIComponent(hashtag);
 
   var twitter_account_follow = azo_ssb_static.twitter_account_follow
   if(this.twitter_account_follow != '') {
@@ -979,14 +1014,18 @@ azo_ssb.prototype.change_links = function(links) {
   }
   this.twitter_account_follow = twitter_account_follow;
 
-  var facebook_hashtag;
+  var facebook_hashtag = hashtag;
+  if(this.twitter_hashtag != '') {
+    hashtag = this.twitter_hashtag;
+  }
+  tags = hashtag.split(' ');
+  if(tags) {
+    hashtag = tags.join('');
+  }
   if(hashtag != '') {
-    facebook_hashtag = '%23' + hashtag;
+    hashtag = '#' + hashtag;
   }
-  if(this.facebook_hashtag != '') {
-    facebook_hashtag = '%23' + encodeURI(this.facebook_hashtag);
-  }
-  this.facebook_hashtag = facebook_hashtag;
+  this.facebook_hashtag = encodeURIComponent(hashtag);
 
   var media = this.image;
   if(this.pinterest_media != '') {
