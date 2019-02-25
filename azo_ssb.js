@@ -1,3 +1,6 @@
+// use google analyitics.js
+const AZO_SSB_GA_USE = false;
+
 // button type
 const AZO_SSB_BTNT_NOTHING = 0;
 const AZO_SSB_BTNT_ICON = 1;
@@ -1338,155 +1341,155 @@ azo_ssb.prototype.add_btn2 = function(setting, tr, btn) {
     this.btn_spc(setting, tr);
     break;
   case AZO_SSB_BTN_TWITTER:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_twitter_', azo_ssb_home + 'icons_addtoany/twitter.svg', this.twitter_name, this.twitter_tweet, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_twitter_', azo_ssb_home + 'icons_addtoany/twitter.svg', this.twitter_name, this.twitter_tweet, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'twitter', 'tweet', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_FACEBOOK:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_facebook_', azo_ssb_home + 'icons_addtoany/facebook.svg', this.facebook_name, this.facebook_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_facebook_', azo_ssb_home + 'icons_addtoany/facebook.svg', this.facebook_name, this.facebook_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'facebook', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_HATENA:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_hatena_', azo_ssb_home + 'icons_addtoany/hatena.svg', this.hatena_name, this.hatena_bookmark, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_hatena_', azo_ssb_home + 'icons_addtoany/hatena.svg', this.hatena_name, this.hatena_bookmark, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'hatena', 'bookmark', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_TUMBLR:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_tumblr_', azo_ssb_home + 'icons_addtoany/tumblr.svg', this.tumblr_name, this.tumblr_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_tumblr_', azo_ssb_home + 'icons_addtoany/tumblr.svg', this.tumblr_name, this.tumblr_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'tumblr', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_POCKET:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_pocket_', azo_ssb_home + 'icons_addtoany/pocket.svg', this.pocket_name, this.pocket_pocket, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_pocket_', azo_ssb_home + 'icons_addtoany/pocket.svg', this.pocket_name, this.pocket_pocket, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'pocket', 'pocket', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_LINE:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_line_', azo_ssb_home + 'icons_addtoany/line.svg', this.line_name, this.line_send, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_line_', azo_ssb_home + 'icons_addtoany/line.svg', this.line_name, this.line_send, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'line', 'send', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_MIXI:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_mixi_', azo_ssb_home + 'icons_addtoany/mixi.svg', this.mixi_name, this.mixi_check, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_mixi_', azo_ssb_home + 'icons_addtoany/mixi.svg', this.mixi_name, this.mixi_check, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'mixi', 'check', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_GBOOKMARK:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_gbookmark_', azo_ssb_home + 'icons_addtoany/google.svg', this.gbookmark_name, this.gbookmark_bookmark, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_gbookmark_', azo_ssb_home + 'icons_addtoany/google.svg', this.gbookmark_name, this.gbookmark_bookmark, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'google bookmark', 'bookmark', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_EVERNOTE:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_evernote_', azo_ssb_home + 'icons_addtoany/evernote.svg', this.evernote_name, this.evernote_clip, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_evernote_', azo_ssb_home + 'icons_addtoany/evernote.svg', this.evernote_name, this.evernote_clip, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'evernote', 'clip', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
 
     break;
 //    case AZO_SSB_BTN_HANGOUT:
-//      this.add_btn3(setting, tr, btn, 'azo_ssb_btn_hangout_', azo_ssb_home + 'icons_addtoany/hangout.svg', this.hangout_name, this.hangout_send, this.hangout_link, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+//      this.add_btn3(setting, tr, btn, 'azo_ssb_btn_hangout_', azo_ssb_home + 'icons_addtoany/hangout.svg', this.hangout_name, this.hangout_send, this.hangout_link, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'hangout', 'send', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
 //      break;
   case AZO_SSB_BTN_WHATSAPP:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_whatsapp_', azo_ssb_home + 'icons_addtoany/whatsapp.svg', this.whatsapp_name, this.whatsapp_send, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_whatsapp_', azo_ssb_home + 'icons_addtoany/whatsapp.svg', this.whatsapp_name, this.whatsapp_send, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'whatsapp', 'send', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_WEIBO:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_weibo_', azo_ssb_home + 'icons_addtoany/sina_weibo.svg', this.weibo_name, this.weibo_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_weibo_', azo_ssb_home + 'icons_addtoany/sina_weibo.svg', this.weibo_name, this.weibo_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'weibo', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_FBMESSAGE:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_facebook_msg_', azo_ssb_home + 'icons_addtoany/facebook_messenger.svg', this.facebook_msg_name, this.facebook_msg_send, function(event) { FB.ui({ method: 'send', link: event.target.azo_ssb.URL}); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_facebook_msg_', azo_ssb_home + 'icons_addtoany/facebook_messenger.svg', this.facebook_msg_name, this.facebook_msg_send, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'facebook_messenger', 'send', event.target.azo_ssb.encURL); } FB.ui({ method: 'send', link: event.target.azo_ssb.URL}); });
     break;
   case AZO_SSB_BTN_PINTEREST:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_pinterest_', azo_ssb_home + 'icons_addtoany/pinterest.svg', this.pinterest_name, this.pinterest_pinit, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_pinterest_', azo_ssb_home + 'icons_addtoany/pinterest.svg', this.pinterest_name, this.pinterest_pinit, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'pinterest', 'pinit', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_LINKEDIN:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_linkedin_', azo_ssb_home + 'icons_addtoany/linkedin.svg', this.linkedin_name, this.linkedin_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_linkedin_', azo_ssb_home + 'icons_addtoany/linkedin.svg', this.linkedin_name, this.linkedin_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'linkedin', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_REDDIT:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_reddit_', azo_ssb_home + 'icons_addtoany/reddit.svg', this.reddit_name, this.reddit_post, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_reddit_', azo_ssb_home + 'icons_addtoany/reddit.svg', this.reddit_name, this.reddit_post, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'reddit', 'post', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_TELEGRAM:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_telegram_', azo_ssb_home + 'icons_addtoany/telegram.svg', this.telegram_name, this.telegram_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_telegram_', azo_ssb_home + 'icons_addtoany/telegram.svg', this.telegram_name, this.telegram_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'telegram', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_RENREN:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_renren_', azo_ssb_home + 'icons_addtoany/renren.svg', this.renren_name, this.renren_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_renren_', azo_ssb_home + 'icons_addtoany/renren.svg', this.renren_name, this.renren_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'renren', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_BUFFER:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_buffer_', azo_ssb_home + 'icons_addtoany/buffer.svg', this.buffer_name, this.buffer_readlater, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_buffer_', azo_ssb_home + 'icons_addtoany/buffer.svg', this.buffer_name, this.buffer_readlater, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'buffer', 'readlater', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_BLOGGER:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_blogger_', azo_ssb_home + 'icons_addtoany/blogger.svg', this.blogger_name, this.blogger_blogthis, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_blogger_', azo_ssb_home + 'icons_addtoany/blogger.svg', this.blogger_name, this.blogger_blogthis, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'blogger', 'blogthis', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_DIGG:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_digg_', azo_ssb_home + 'icons_addtoany/digg.svg', this.digg_name, this.digg_submit, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_digg_', azo_ssb_home + 'icons_addtoany/digg.svg', this.digg_name, this.digg_submit, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'digg', 'submit', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_FLIPBOARD:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_flipboard_', azo_ssb_home + 'icons_addtoany/flipboard.svg', this.flipboard_name, this.flipboard_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_flipboard_', azo_ssb_home + 'icons_addtoany/flipboard.svg', this.flipboard_name, this.flipboard_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'flipboard', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_INSTAPAPER:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_instapaper_', azo_ssb_home + 'icons_addtoany/instapaper.svg', this.instapaper_name, this.instapaper_add, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_instapaper_', azo_ssb_home + 'icons_addtoany/instapaper.svg', this.instapaper_name, this.instapaper_add, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'instapaper', 'add', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_QQ:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_qq_', azo_ssb_home + 'etc/qq.svg', this.qq_name, this.qq_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_qq_', azo_ssb_home + 'etc/qq.svg', this.qq_name, this.qq_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'qq', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_KAKAO:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_kakao_', azo_ssb_home + 'icons_addtoany/kakao.svg', this.kakao_name, this.kakao_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_kakao_', azo_ssb_home + 'icons_addtoany/kakao.svg', this.kakao_name, this.kakao_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'kakao', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_ONENOTE:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_onenote_', azo_ssb_home + 'etc/onenote.svg', this.onenote_name, this.onenote_save, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_onenote_', azo_ssb_home + 'etc/onenote.svg', this.onenote_name, this.onenote_save, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'onenote', 'save', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_KNOWN:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_known_', azo_ssb_home + 'icons_addtoany/known.svg', this.known_name, this.known_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_known_', azo_ssb_home + 'icons_addtoany/known.svg', this.known_name, this.known_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'known', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_MYSPACE:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_myspace_', azo_ssb_home + 'icons_addtoany/myspace.svg', this.myspace_name, this.myspace_post, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_myspace_', azo_ssb_home + 'icons_addtoany/myspace.svg', this.myspace_name, this.myspace_post, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'myspace', 'post', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_ODNOKLASSNIKI:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_odnoklassniki_', azo_ssb_home + 'icons_addtoany/odnoklassniki.svg', this.odnoklassniki_name, this.odnoklassniki_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_odnoklassniki_', azo_ssb_home + 'icons_addtoany/odnoklassniki.svg', this.odnoklassniki_name, this.odnoklassniki_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'odnoklassniki', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_VKONTAKTE:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_vkontakte_', azo_ssb_home + 'icons_addtoany/vk.svg', this.vkontakte_name, this.vkontakte_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_vkontakte_', azo_ssb_home + 'icons_addtoany/vk.svg', this.vkontakte_name, this.vkontakte_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'vkontakte', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_XING:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_xing_', azo_ssb_home + 'icons_addtoany/xing.svg', this.xing_name, this.xing_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_xing_', azo_ssb_home + 'icons_addtoany/xing.svg', this.xing_name, this.xing_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'xing', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_YUMMLY:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_yummly_', azo_ssb_home + 'icons_addtoany/yummly.svg', this.yummly_name, this.yummly_yum, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_yummly_', azo_ssb_home + 'icons_addtoany/yummly.svg', this.yummly_name, this.yummly_yum, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'yummly', 'yum', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_OUTLOOK_CALENDER:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_outlook_calender_', azo_ssb_home + 'etc/outlook.svg', this.outlook_calender_name, this.outlook_calender_add, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_outlook_calender_', azo_ssb_home + 'etc/outlook.svg', this.outlook_calender_name, this.outlook_calender_add, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'outlook.com calender', 'add', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_QZONE:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_qzone_', azo_ssb_home + 'icons_addtoany/qzone.svg', this.qzone_name, this.qzone_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_qzone_', azo_ssb_home + 'icons_addtoany/qzone.svg', this.qzone_name, this.qzone_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'qzone', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_SKYPE:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_skype_', azo_ssb_home + 'icons_addtoany/skype.svg', this.skype_name, this.skype_share, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_skype_', azo_ssb_home + 'icons_addtoany/skype.svg', this.skype_name, this.skype_share, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'skype', 'share', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_VIBER:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_viber_', azo_ssb_home + 'icons_addtoany/viber.svg', this.viber_name, this.viber_forward, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_viber_', azo_ssb_home + 'icons_addtoany/viber.svg', this.viber_name, this.viber_forward, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'viber', 'forward', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_PRINTFRIENDLY:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_printfriendly_', azo_ssb_home + 'icons_addtoany/printfriendly.svg', this.printfriendly_name, this.printfriendly_print, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_printfriendly_', azo_ssb_home + 'icons_addtoany/printfriendly.svg', this.printfriendly_name, this.printfriendly_print, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'printfriendly', 'print', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_AMAZON_WL:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_amazon_wl_', azo_ssb_home + 'icons_addtoany/amazon.svg', this.amazon_wl_name, this.amazon_wl_add, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_amazon_wl_', azo_ssb_home + 'icons_addtoany/amazon.svg', this.amazon_wl_name, this.amazon_wl_add, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'amazon_wl', 'add', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_GMAIL:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_gmail_', azo_ssb_home + 'icons_addtoany/gmail.svg', this.gmail_name, this.gmail_send, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_gmail_', azo_ssb_home + 'icons_addtoany/gmail.svg', this.gmail_name, this.gmail_send, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'gmail', 'send', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_OUTLOOK_EMAIL:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_outlook_email_', azo_ssb_home + 'etc/outlook.svg', this.outlook_email_name, this.outlook_email_send, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_outlook_email_', azo_ssb_home + 'etc/outlook.svg', this.outlook_email_name, this.outlook_email_send, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'outlook.com email', 'send', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_RSS:
     if(this.rss != '') {
-      this.add_btn3(setting, tr, btn, 'azo_ssb_btn_rss_', azo_ssb_home + 'icons_addtoany/feed.svg', this.rss_name, this.rss_rss, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+      this.add_btn3(setting, tr, btn, 'azo_ssb_btn_rss_', azo_ssb_home + 'icons_addtoany/feed.svg', this.rss_name, this.rss_rss, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'rss', 'rss', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     }
     break;
   case AZO_SSB_BTN_FEEDLY:
     if(this.rss != '') {
-      this.add_btn3(setting, tr, btn, 'azo_ssb_btn_feedly_', azo_ssb_home + 'etc/ico_feedly.svg', this.feedly_name, this.feedly_rss, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+      this.add_btn3(setting, tr, btn, 'azo_ssb_btn_feedly_', azo_ssb_home + 'etc/ico_feedly.svg', this.feedly_name, this.feedly_rss, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'feedly', 'rss', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     }
     break;
   case AZO_SSB_BTN_INOREADER:
     if(this.rss != '') {
-      this.add_btn3(setting, tr, btn, 'azo_ssb_btn_inoreader_', azo_ssb_home + 'etc/InoreaderLOGO.svg', this.inoreader_name, this.inoreader_rss, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+      this.add_btn3(setting, tr, btn, 'azo_ssb_btn_inoreader_', azo_ssb_home + 'etc/InoreaderLOGO.svg', this.inoreader_name, this.inoreader_rss, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'inoreader', 'rss', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     }
     break;
   case AZO_SSB_BTN_SMS:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_sms_', azo_ssb_home + 'icons_addtoany/sms.svg', this.sms_name, this.sms_sms, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_sms_', azo_ssb_home + 'icons_addtoany/sms.svg', this.sms_name, this.sms_sms, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'sms', 'send', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_EMAIL:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_email_', azo_ssb_home + 'icons_addtoany/email.svg', this.email_name, this.email_email, function(event) { window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_email_', azo_ssb_home + 'icons_addtoany/email.svg', this.email_name, this.email_email, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'email', 'send', event.target.azo_ssb.encURL); } window.open(event.target.azo_ssb.getlink(event.target.btn), '_blank'); });
     break;
   case AZO_SSB_BTN_LINKCOPY:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_linkcopy_', azo_ssb_home + '148705-essential-collection/svg/link.svg', this.linkcopy_name, this.linkcopy_copy, function(event) { event.target.azo_ssb.copy_link(); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_linkcopy_', azo_ssb_home + '148705-essential-collection/svg/link.svg', this.linkcopy_name, this.linkcopy_copy, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'browser', 'copylink', event.target.azo_ssb.encURL); } event.target.azo_ssb.copy_link(); });
     break;
   case AZO_SSB_BTN_BOOKMARK:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_bookmark_', azo_ssb_home + '148705-essential-collection/svg/bookmark.svg', this.bookmark_name, this.bookmark_bookmark, function(event) { event.target.azo_ssb.add_favorite(); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_bookmark_', azo_ssb_home + '148705-essential-collection/svg/bookmark.svg', this.bookmark_name, this.bookmark_bookmark, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'browser', 'favorite', event.target.azo_ssb.encURL); } event.target.azo_ssb.add_favorite(); });
     break;
   case AZO_SSB_BTN_PRINT:
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_print_', azo_ssb_home + '148705-essential-collection/svg/print.svg', this.print_name, this.print_print, function(event) { window.print(); });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_print_', azo_ssb_home + '148705-essential-collection/svg/print.svg', this.print_name, this.print_print, function(event) { if(AZO_SSB_GA_USE == true) { ga('send', 'social', 'browser', 'print', event.target.azo_ssb.encURL); } window.print(); });
     break;
   case AZO_SSB_BTN_OTHER:
     this.make_overlay(setting);
