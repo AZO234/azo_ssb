@@ -1529,7 +1529,7 @@ azo_ssb.prototype.add_btn2 = function(setting, tr, btn) {
     break;
   case AZO_SSB_BTN_OTHER:
     this.make_overlay(setting);
-    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_other_', azo_ssb_home + 'icons_addtoany/a2a.svg', this.other_name, this.other_other, function(event) { event.target.azo_ssb.modaldiv.style.display = 'block'; });
+    this.add_btn3(setting, tr, btn, 'azo_ssb_btn_other_', azo_ssb_home + 'icons_addtoany/a2a.svg', this.other_name, this.other_other, function(event) {   azo_ssb_viewport_setsize(); event.target.azo_ssb.modaldiv.style.display = 'block'; });
     break;
   }
 };
@@ -1622,10 +1622,6 @@ function azo_ssb_array_add(azo_ssb_setting) {
   azo_ssb_array.push(ssb);
   return ssb;
 }
-
-window.addEventListener('load', function(event) {
-  azo_ssb_viewport_setsize();
-});
 
 document.addEventListener('DOMContentLoaded', function(event) {
   if(azo_ssb_array.length > 0) {
