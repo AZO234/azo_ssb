@@ -333,7 +333,7 @@ azo_ssb.prototype.init = function() {
 
   // --- Facebook share
 
-  // Facebook hashtags (omit hash / tags mark off by commma / prior to common)
+  // Facebook hashtags (omit hash / 1 tag only / prior to common)
   this.facebook_hashtag = '';
 
   // name
