@@ -41,14 +41,3 @@ function azo_viewport_viewmode_switch() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function(event) {
-  var viewport = document.getElementsByName('viewport')[0];
-  if(viewport) {
-    viewport.setAttribute('content', 'width=' + AZO_VIEWPORT_WIDTH_PC + ',initial-scale=1');
-  } else {
-    viewport = document.createElement('meta');
-    viewport.name = 'viewport';
-    viewport.setAttribute('content', 'width=' + AZO_VIEWPORT_WIDTH_PC + ',initial-scale=1');
-    document.getElementsByTagName('head')[0].appendChild(css);
-  }
-});
