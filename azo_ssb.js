@@ -66,21 +66,19 @@ var azo_ssb_static = {};
 var azo_ssb_home = '';
 
 function azo_ssb_viewport_setsize() {
-  var viewmode = azo_viewport_get_mode();
-
   var tables = document.getElementsByTagName('table');
   for(var i = 0; i < tables.length; i++) {
     if(/^azo_ssb_overlay_table_/.test(tables[i].className)) {
-      if(viewmode == 'pc') {
+      if(screen.width >= 640) {
         tables[i].style.top = '10%';
         tables[i].style.left = '30%';
         tables[i].style.width = '40%';
         tables[i].style.height = '80%';
       } else {
-        tables[i].style.top = '10%';
-        tables[i].style.left = '10%';
-        tables[i].style.width = '80%';
-        tables[i].style.height = '80%';
+        tables[i].style.top = '0%';
+        tables[i].style.left = '5%';
+        tables[i].style.width = '90%';
+        tables[i].style.height = '100%';
       }
     }
   }
